@@ -1,2 +1,2 @@
 # Platformer
-Platformer game
+Gamedev challenge
