@@ -1,6 +1,8 @@
 #ifndef _MAIN_MENU_H_
 #define _MAIN_MENU_H_
 
+#include <string>
+
 #include "gamestate.h"
 
 class GameStateManager;
@@ -16,7 +18,14 @@ public:
     virtual void render(sf::RenderWindow &window) override;
 
 private:
-    GameStateManager *m_gameStateManager;
+    enum Option {
+        OptionStart = 0,
+        OptionQuit,
+        OptionCount
+    };
+
+    std::string m_options[OptionCount];
+    int m_selectedOption;
 };
 
 #endif // _MAIN_MENU_H_
