@@ -12,6 +12,7 @@ include_directories(
 
 set(SOURCES
     src/gamestatemanager.cpp
+    src/resourcemanager.cpp
     src/mainmenu.cpp
 
     src/game.cpp
