@@ -11,6 +11,8 @@ include_directories(
 )
 
 set(SOURCES
+    src/gamestatemanager.cpp
+
     src/main.cpp
 )
 
