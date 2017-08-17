@@ -6,7 +6,7 @@ GameStateManager *GameStateManager::getGameStateManager(void)
     return &gameStateManager;
 }
 
-void GameStateManager::addGameState(const std::string &id, std::shared_ptr<GameState> &gameState)
+void GameStateManager::addGameState(const std::string &id, const std::shared_ptr<GameState> &gameState)
 {
     m_states[id] = gameState;
 }

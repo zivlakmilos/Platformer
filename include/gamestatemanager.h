@@ -14,7 +14,7 @@ public:
 
     static GameStateManager *getGameStateManager(void);
 
-    void addGameState(const std::string &id, std::shared_ptr<GameState> &gameState);
+    void addGameState(const std::string &id, const std::shared_ptr<GameState> &gameState);
 
     void setCurrentGameState(const std::string &id);
     std::shared_ptr<GameState> getCurrentGameState(void);
