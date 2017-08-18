@@ -17,7 +17,7 @@ public:
     void addGameState(const std::string &id, const std::shared_ptr<GameState> &gameState);
 
     void setCurrentGameState(const std::string &id);
-    std::shared_ptr<GameState> getCurrentGameState(void);
+    std::shared_ptr<GameState> getCurrentGameState(void) const;
 
 private:
     GameStateManager(void) {};

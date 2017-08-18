@@ -18,7 +18,7 @@ void GameStateManager::setCurrentGameState(const std::string &id)
         m_currentState = it->second;
 }
 
-std::shared_ptr<GameState> GameStateManager::getCurrentGameState(void)
+std::shared_ptr<GameState> GameStateManager::getCurrentGameState(void) const
 {
     return m_currentState;
 }

@@ -19,6 +19,8 @@ MainMenu::~MainMenu(void)
 
 void MainMenu::handleEvents(sf::RenderWindow &window)
 {
+    GameStateManager *manager = GameStateManager::getGameStateManager();
+
     sf::Event event;
     while(window.pollEvent(event))
     {
@@ -44,7 +46,8 @@ void MainMenu::handleEvents(sf::RenderWindow &window)
                     case sf::Keyboard::Return:
                         if(m_selectedOption == OptionQuit)
                             window.close();
-                        else if(m_selectedOption == OptionStart) {} // TODO: Start gameplay
+                        else if(m_selectedOption == OptionStart)
+                            manager->setCurrentGameState("gameplay");
                         break;
                 }
                 break;

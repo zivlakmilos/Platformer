@@ -14,6 +14,9 @@ set(SOURCES
     src/gamestatemanager.cpp
     src/resourcemanager.cpp
     src/mainmenu.cpp
+    src/gameplay.cpp
+
+    src/animation.cpp
 
     src/game.cpp
     src/main.cpp
