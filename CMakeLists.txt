@@ -7,6 +7,7 @@ find_package(SFML COMPONENTS graphics window system)
 
 include_directories(
     include/
+    3rdpart/
     ${SFML_INCLUDE_DIRS}
 )
 
@@ -15,6 +16,7 @@ set(SOURCES
     src/resourcemanager.cpp
     src/mainmenu.cpp
     src/gameplay.cpp
+    src/map.cpp
 
     src/animation.cpp
 

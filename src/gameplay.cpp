@@ -8,7 +8,7 @@
 
 Gameplay::Gameplay(void)
 {
-    ResourceManager *resourceManager = ResourceManager::getResourceManager();
+    m_map = Map::loadMap("resources/maps/test.json");
 }
 
 Gameplay::~Gameplay(void)
@@ -45,4 +45,5 @@ void Gameplay::update(float deltaTime)
 
 void Gameplay::render(sf::RenderWindow &window)
 {
+    m_map->render(window);
 }

@@ -2,7 +2,7 @@
 #define _GAMEPLAY_H_
 
 #include "gamestate.h"
-#include "animation.h"
+#include "map.h"
 
 class Gameplay : public GameState
 {
@@ -15,6 +15,7 @@ public:
     virtual void render(sf::RenderWindow &window);
 
 private:
+    std::shared_ptr<Map> m_map;
 };
 
 #endif // _GAMEPLAY_H_

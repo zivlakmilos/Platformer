@@ -5,6 +5,8 @@
 #include "mainmenu.h"
 #include "gameplay.h"
 
+#include "map.h"
+
 Game::Game(void)
     : m_resourceManager(ResourceManager::getResourceManager()),
       m_gameStateManager(GameStateManager::getGameStateManager()),
@@ -14,6 +16,7 @@ Game::Game(void)
 
     m_resourceManager->loadFont("kaushan", "resources/fonts/kaushan.otf");
     m_resourceManager->loadTexture("player", "resources/textures/player1.png");
+    m_resourceManager->loadTexture("tiles", "resources/textures/tiles2.png");
 
     m_gameStateManager->addGameState("mainMenu", std::make_shared<MainMenu>());
     m_gameStateManager->addGameState("gameplay", std::make_shared<Gameplay>());
