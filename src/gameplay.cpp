@@ -9,6 +9,7 @@
 Gameplay::Gameplay(void)
 {
     m_map = Map::loadMap("resources/maps/test.json");
+    m_player = std::make_shared<Player>(128.0f, 128.0f);
 }
 
 Gameplay::~Gameplay(void)
@@ -33,6 +34,23 @@ void Gameplay::handleEvents(sf::RenderWindow &window)
                     case sf::Keyboard::Escape:
                         manager->setCurrentGameState("mainMenu");
                         break;
+                    case sf::Keyboard::Right:
+                        m_player->moveRight(true);
+                        break;
+                    case sf::Keyboard::Left:
+                        m_player->moveLeft(true);
+                        break;
+                }
+                break;
+            case sf::Event::KeyReleased:
+                switch(event.key.code)
+                {
+                    case sf::Keyboard::Right:
+                        m_player->moveRight(false);
+                        break;
+                    case sf::Keyboard::Left:
+                        m_player->moveLeft(false);
+                        break;
                 }
                 break;
         }
@@ -41,9 +59,11 @@ void Gameplay::handleEvents(sf::RenderWindow &window)
 
 void Gameplay::update(float deltaTime)
 {
+    m_player->update(deltaTime);
 }
 
 void Gameplay::render(sf::RenderWindow &window)
 {
     m_map->render(window);
+    m_player->render(window);
 }

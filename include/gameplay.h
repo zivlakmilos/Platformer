@@ -3,6 +3,7 @@
 
 #include "gamestate.h"
 #include "map.h"
+#include "player.h"
 
 class Gameplay : public GameState
 {
@@ -16,6 +17,7 @@ public:
 
 private:
     std::shared_ptr<Map> m_map;
+    std::shared_ptr<Player> m_player;
 };
 
 #endif // _GAMEPLAY_H_

@@ -13,6 +13,7 @@ Game::Game(void)
       m_window(sf::VideoMode(1000, 500), "Platformer \xA9 Milos Zivlak - ZI 2017")
 {
     m_window.setFramerateLimit(60);
+    m_window.setKeyRepeatEnabled(false);
 
     m_resourceManager->loadFont("kaushan", "resources/fonts/kaushan.otf");
     m_resourceManager->loadTexture("player", "resources/textures/player1.png");

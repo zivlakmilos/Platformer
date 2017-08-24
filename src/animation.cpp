@@ -22,7 +22,7 @@ void Animation::update(float deltaTime)
     {
         m_currentTime = 0.0f;
         m_crop.left += m_crop.height;
-        if(m_crop.left > m_framesCount * m_crop.height)
+        if(m_crop.left >= m_framesCount * m_crop.height)
             m_crop.left = 0;
     }
 }

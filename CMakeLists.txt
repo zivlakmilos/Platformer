@@ -17,6 +17,7 @@ set(SOURCES
     src/mainmenu.cpp
     src/gameplay.cpp
     src/map.cpp
+    src/player.cpp
 
     src/animation.cpp
 
