@@ -60,10 +60,11 @@ void Gameplay::handleEvents(sf::RenderWindow &window)
 void Gameplay::update(float deltaTime)
 {
     m_player->update(deltaTime);
+    m_camera.follow(m_player);
 }
 
 void Gameplay::render(sf::RenderWindow &window)
 {
-    m_map->render(window);
-    m_player->render(window);
+    m_map->render(window, m_camera);
+    m_player->render(window, m_camera);
 }

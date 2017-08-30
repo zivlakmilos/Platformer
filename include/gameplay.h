@@ -4,6 +4,7 @@
 #include "gamestate.h"
 #include "map.h"
 #include "player.h"
+#include "camera.h"
 
 class Gameplay : public GameState
 {
@@ -18,6 +19,7 @@ public:
 private:
     std::shared_ptr<Map> m_map;
     std::shared_ptr<Player> m_player;
+    Camera m_camera;
 };
 
 #endif // _GAMEPLAY_H_

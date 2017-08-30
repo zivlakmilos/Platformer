@@ -41,7 +41,7 @@ void MainMenu::handleEvents(sf::RenderWindow &window)
                         break;
                     case sf::Keyboard::Up:
                         if(--m_selectedOption < 0)
-                            m_selectedOption = 0;
+                            m_selectedOption = OptionCount - 1;
                         break;
                     case sf::Keyboard::Return:
                         if(m_selectedOption == OptionQuit)

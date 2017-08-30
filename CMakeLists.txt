@@ -18,6 +18,7 @@ set(SOURCES
     src/gameplay.cpp
     src/map.cpp
     src/player.cpp
+    src/camera.cpp
 
     src/animation.cpp
 

@@ -48,7 +48,7 @@ std::shared_ptr<Map> Map::loadMap(const std::string &filePaht)
     return map;
 }
 
-void Map::render(sf::RenderWindow &window)
+void Map::render(sf::RenderWindow &window, const Camera &camera)
 {
     sf::Sprite sprite;
     auto texture = ResourceManager::getResourceManager()->getTexture("tiles");
@@ -63,7 +63,23 @@ void Map::render(sf::RenderWindow &window)
                              (tile * m_tileWidth) / texture->getSize().x,
                              m_tileWidth, m_tileHeight };
         sprite.setTextureRect(crop);
-        sprite.setPosition((i % m_width) * m_tileWidth, (i / m_width) * m_tileHeight);
+
+        Vector2f position = mapToWorld(Vector2i(i % m_width, i / m_width));
+        position = camera.worldToView(position);
+        sprite.setPosition(position.getX(), position.getY());
+
         window.draw(sprite);
     }
+}
+
+Vector2i Map::worldToMap(const Vector2f &position) const
+{
+    return Vector2i(position.getX() / m_tileWidth,
+                    position.getY() / m_tileHeight);
+}
+
+Vector2f Map::mapToWorld(const Vector2i &position) const
+{
+    return Vector2f(position.getX() * m_tileWidth,
+                    position.getY() * m_tileHeight);
 }

@@ -1,6 +1,7 @@
 #include "player.h"
 
 #include "resourcemanager.h"
+#include "camera.h"
 
 Player::Player(float x, float y)
       : m_position(x, y),
@@ -41,19 +42,24 @@ void Player::update(float deltaTime)
     m_animation[m_animationState].update(deltaTime);
 }
 
-void Player::render(sf::RenderWindow &window)
+void Player::render(sf::RenderWindow &window, const Camera &camera)
 {
     m_animation[m_animationState].apply(m_sprite);
 
     if(m_playerState & (PlayerStateStandingLeft | PlayerStateMovingLeft))
     {
         m_sprite.setScale(-1.0f, 1.0f);
-        m_sprite.setPosition(m_position.getX() + m_sprite.getLocalBounds().width,
-                             m_position.getY());
+        Vector2f position(m_position.getX() + m_sprite.getLocalBounds().width,
+                          m_position.getY());
+        position = camera.worldToView(position);
+        m_sprite.setPosition(position.getX(), position.getY());
     } else
     {
         m_sprite.setScale(1.0f, 1.0f);
-        m_sprite.setPosition(m_position.getX(), m_position.getY());
+        Vector2f position(m_position.getX(),
+                          m_position.getY());
+        position = camera.worldToView(position);
+        m_sprite.setPosition(position.getX(), position.getY());
     }
 
     window.draw(m_sprite);

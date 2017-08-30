@@ -4,6 +4,8 @@
 #include <memory>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include "camera.h"
+
 class Map
 {
 public:
@@ -17,7 +19,10 @@ public:
         TileBlock = 7
     };
 
-    void render(sf::RenderWindow &window);
+    void render(sf::RenderWindow &window, const Camera &camera);
+
+    Vector2i worldToMap(const Vector2f &position) const;
+    Vector2f mapToWorld(const Vector2i &position) const;
 
 private:
     int m_width;

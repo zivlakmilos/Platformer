@@ -6,13 +6,21 @@
 #include "vector2.h"
 #include "animation.h"
 
+class Camera;
+
 class Player
 {
 public:
     Player(float x = 0.0f, float y = 0.0f);
 
+    inline Vector2f getPosition(void) const { return m_position; }
+    inline void setPosition(Vector2f position) { m_position = position; }
+
+    inline Vector2f getVelocity(void) const { return m_velocity; }
+    inline void setVelocity(Vector2f velocity) { m_velocity = velocity; }
+
     void update(float deltaTime);
-    void render(sf::RenderWindow &window);
+    void render(sf::RenderWindow &window, const Camera &camera);
 
     void moveRight(bool move = true);
     void moveLeft(bool move = true);
