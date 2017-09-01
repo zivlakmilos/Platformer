@@ -19,6 +19,8 @@ public:
     inline Vector2f getVelocity(void) const { return m_velocity; }
     inline void setVelocity(Vector2f velocity) { m_velocity = velocity; }
 
+    inline sf::FloatRect getBounds(void) const { return m_sprite.getLocalBounds(); }
+
     void update(float deltaTime);
     void render(sf::RenderWindow &window, const Camera &camera);
 

@@ -72,6 +72,21 @@ void Map::render(sf::RenderWindow &window, const Camera &camera)
     }
 }
 
+bool Map::collisionRight(const std::shared_ptr<Player> &player)
+{
+    return checkCollision(player, Side::SideRight);
+}
+
+bool Map::collisionLeft(const std::shared_ptr<Player> &player)
+{
+    return checkCollision(player, Side::SideLeft);
+}
+
+bool Map::collisionDown(const std::shared_ptr<Player> &player)
+{
+    return checkCollision(player, Side::SideDown);
+}
+
 Vector2i Map::worldToMap(const Vector2f &position) const
 {
     return Vector2i(position.getX() / m_tileWidth,
@@ -82,4 +97,52 @@ Vector2f Map::mapToWorld(const Vector2i &position) const
 {
     return Vector2f(position.getX() * m_tileWidth,
                     position.getY() * m_tileHeight);
+}
+
+bool Map::checkCollision(const std::shared_ptr<Player> &player, Map::Side side)
+{
+    Vector2f playerPosition = player->getPosition();
+    sf::FloatRect playerBounds = player->getBounds();
+    Vector2f halfSize(playerBounds.width / 2.0f, playerBounds.height / 2.0f);
+    playerPosition += halfSize;
+    Vector2i playerMapPosition = worldToMap(playerPosition);
+
+    switch(side)
+    {
+        case Side::SideRight:
+            halfSize.setY(0.0f);
+            if(worldToMap(playerPosition + halfSize).getX() > playerMapPosition.getX() &&
+                m_tiles[playerMapPosition.getY() * m_width + (playerMapPosition.getX() + 1) % m_width] > 0)
+            {
+                Vector2f position = player->getPosition();
+                position.setX(mapToWorld(playerMapPosition).getX());
+                player->setPosition(position);
+                return true;
+            }
+            break;
+        case Side::SideLeft:
+            halfSize.setY(0.0f);
+            if(worldToMap(playerPosition - halfSize).getX() < playerMapPosition.getX() &&
+                m_tiles[playerMapPosition.getY() * m_width + (playerMapPosition.getX() - 1) % m_width] > 0)
+            {
+                Vector2f position = player->getPosition();
+                position.setX(mapToWorld(playerMapPosition).getX());
+                player->setPosition(position);
+                return true;
+            }
+            break;
+        case Side::SideDown:
+            halfSize.setX(0.0f);
+            if(worldToMap(playerPosition + halfSize).getY() > playerMapPosition.getY() &&
+                m_tiles[(playerMapPosition.getY() + 1) * m_width + playerMapPosition.getX() % m_width] > 0)
+            {
+                Vector2f position = player->getPosition();
+                position.setY(mapToWorld(playerMapPosition).getY());
+                player->setPosition(position);
+                return true;
+            }
+            break;
+    }
+
+    return false;
 }

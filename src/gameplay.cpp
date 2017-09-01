@@ -60,6 +60,12 @@ void Gameplay::handleEvents(sf::RenderWindow &window)
 void Gameplay::update(float deltaTime)
 {
     m_player->update(deltaTime);
+
+    if(m_player->getVelocity().getX() < 0.0f)
+        m_map->collisionLeft(m_player);
+    else if(m_player->getVelocity().getX() > 0.0f)
+        m_map->collisionRight(m_player);
+
     m_camera.follow(m_player);
 }
 
