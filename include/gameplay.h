@@ -6,6 +6,8 @@
 #include "player.h"
 #include "camera.h"
 
+class b2World;
+
 class Gameplay : public GameState
 {
 public:
@@ -20,6 +22,7 @@ private:
     std::shared_ptr<Map> m_map;
     std::shared_ptr<Player> m_player;
     Camera m_camera;
+    std::shared_ptr<b2World> m_world;
 };
 
 #endif // _GAMEPLAY_H_

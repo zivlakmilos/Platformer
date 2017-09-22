@@ -1,6 +1,7 @@
 #include "gameplay.h"
 
 #include <SFML/Graphics.hpp>
+#include <Box2D/Box2D.h>
 
 #include "resourcemanager.h"
 #include "gamestatemanager.h"
@@ -10,6 +11,7 @@ Gameplay::Gameplay(void)
 {
     m_map = Map::loadMap("resources/maps/test.json");
     m_player = std::make_shared<Player>(128.0f, 128.0f);
+    m_world = std::make_shared<b2World>(b2Vec2(0.0f, 0.0f));
 }
 
 Gameplay::~Gameplay(void)
